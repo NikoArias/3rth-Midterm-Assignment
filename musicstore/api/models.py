@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Instrument(models.Model):
-    instrument = models.TextField()
-    price = models.TextField()
+    name = models.TextField()
+    price = models.FloatField()
     model = models.TextField()
     brand = models.TextField()
