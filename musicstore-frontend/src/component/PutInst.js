@@ -1,8 +1,10 @@
 import { React, Component } from "react"
-import { getInstrumentDetail, putInstrumentDetail, delInstrumentDetail} from "./api/instruments";
+import { putInstrumentDetail } from "../api/instruments";
+import { Link } from "react-router-dom";
 
 
-class App extends Component{
+
+class PutInstrumentDetail extends Component{
   constructor(props){
     super(props)
     this.state ={
@@ -35,7 +37,6 @@ class App extends Component{
       this.setState({
           [name]:value,
       }
-        console.log(this.state);
       );
   }
 
@@ -58,9 +59,8 @@ class App extends Component{
 
       this.setState({
           isLoading: true,
-      }
+      });
           putInstrumentDetail(data, this.onPutInstrumentDetailSucces, this.onPutInstrumentDetailError, this.onPutInstrumentDetailDone);
-  );
   }
 
   render(){
@@ -86,9 +86,11 @@ class App extends Component{
                     <p>
                         <button onClick={this.onButtonClick}>Update</button>
                     </p>
+
+                      <p>Go to Dashboard <Link to="/">click here</Link></p>
         </>
   );
   }
 }
 
-export default App
+export default PutInstrumentDetail;

@@ -1,8 +1,10 @@
 import { React, Component } from "react"
-import { delInstrumentDetail} from "./api/instruments";
+import { delInstrumentDetail} from "../api/instruments";
+import { Link } from "react-router-dom";
 
 
-class App extends Component{
+
+class DelInstrumentDetail extends Component{
   constructor(props){
     super(props)
     this.state ={
@@ -35,14 +37,15 @@ class App extends Component{
 
 
   render(){
-      const {id , city, country, name, province} = this.state
     return(
     <>
     <h1>Delete App.js</h1>
     <p><button onClick={this.onDeleteClick}>Delete</button></p>
+
+      <p>Go to Dashboard <Link to="/">click here</Link></p>
     </>
   );
   }
 }
 
-export default App
+export default DelInstrumentDetail;

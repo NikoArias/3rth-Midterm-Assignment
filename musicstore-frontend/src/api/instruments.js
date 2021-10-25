@@ -1,8 +1,8 @@
-import { INSTRUMENT_RETRIEVE_UPTADE_API } from "../constants";
+import { INSTRUMENT_RETRIEVE_UPTADE_API, INSTRUMENT_LIST_CREATE_API } from "../constants";
 import axios from "axios";
 
-export function getInstrumentDetail(data, onSucces, onError, onDone){
-  let url = INSTRUMENT_RETRIEVE_UPTADE_API
+export function getInstruments( onSucces, onError, onDone){
+  let url = INSTRUMENT_LIST_CREATE_API
   axios.get(url)
   .then(onSucces)
   .catch(onError)

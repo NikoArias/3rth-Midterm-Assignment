@@ -1,32 +1,28 @@
 import { React, Component } from "react"
-import { getInstrumentDetail } from "./api/instruments";
+import { getInstruments } from "../api/instruments";
+import { Link } from "react-router-dom";
 
 
-class App extends Component{
+
+class GetInstrumentDetail extends Component{
   constructor(props){
-    super(props)
+    super(props);
     this.state ={
-      "limit": 25,
-      "page": 1,
-      "count" : 0,
-      "results" : [],
+      instruments:[],
     }
 
     this.onGetInstrumentDetailSucces = this.onGetInstrumentDetailSucces.bind(this);
     this.onGetInstrumentDetailError = this.onGetInstrumentDetailError.bind(this);
     this.onGetInstrumentDetailDone = this.onGetInstrumentDetailDone.bind(this);
-
+  }
 
   componentDidMount(){
-    getInstrumentDetail(this.onGetInstrumentDetailSucces, this.onGetInstrumentDetailError, this.onGetInstrumentDetailDone);
+    getInstruments(this.onGetInstrumentDetailSucces, this.onGetInstrumentDetailError, this.onGetInstrumentDetailDone);
   }
   onGetInstrumentDetailSucces(response){
-   let count = response.data["count"];
-   let results = response.data["results"];
    this.setState({
-     "count" : count,
-     "results" : results,
-   })
+     instruments:response.data["results"]
+   });
   }
 
   onGetInstrumentDetailError(err){
@@ -39,23 +35,24 @@ class App extends Component{
 
 
   render(){
-    const {price, email, model, brand, name} = response.data
-    return(
+    const { instruments } = this.state;
+    console.log(instruments)
     let elements = []
-    for (let item of results){
-      let element = (
-        <tr>
-        <td>1</td>
-        <td>{name}</td>
-        <td>{price}</td>
-        <td>{model}</td>
-        <td>{brand}</td>
-        </tr>
+    for (let result of instruments){
+      let elementJSX = (
+      <tr>
+        <td>{result.id}</td>
+        <td>{result.name}</td>
+        <td>{result.price}</td>
+        <td>{result.model}</td>
+        <td>{result.brand}</td>
+      </tr>
       )
-    elements.push(element); :D
+      elements.push(elementJSX)
     }
     return (
       <>
+
       <table>
         <tr>
         <th>id</th>
@@ -66,9 +63,14 @@ class App extends Component{
         </tr>
         {elements}
       </table>
+
+
+        <p>Go to Dashboard <Link to="/">click here</Link></p>
+
       </>
   );
   }
+}
 
 
-export default App
+export default GetInstrumentDetail;

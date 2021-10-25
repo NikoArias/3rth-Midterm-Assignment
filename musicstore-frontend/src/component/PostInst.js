@@ -1,8 +1,10 @@
 import { React, Component } from "react"
-import { postInstrumentDetail } from "./api/instruments";
+import { postInstrumentDetail } from "../api/instruments";
+import { Link } from "react-router-dom";
 
 
-class App extends Component{
+
+class PostInstrumentDetail extends Component{
   constructor(props){
     super(props);
     this.state = {
@@ -72,11 +74,13 @@ class App extends Component{
                       Brand: <input name="brand" value={brand} onChange={this.onTextChange} />
                   </p>
                   <p>
-                      <button onClick={this.onButtonClick}>Update</button>
+                      <button onClick={this.onClickChange}>Post</button>
                   </p>
+
+                    <p>Go to Dashboard <Link to="/">click here</Link></p>
       </>
     );
   }
 }
 
-export default App
+export default PostInstrumentDetail;
