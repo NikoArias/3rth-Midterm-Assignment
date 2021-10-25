@@ -24,3 +24,11 @@ export function delInstrumentDetail(id, onSucces, onError, onDone){
   .catch(onError)
   .then(onDone);
 }
+
+export function postInstrumentDetail(data, onSucces, onError, onDone){
+  let url = INSTRUMENT_RETRIEVE_UPTADE_API
+  axios.post(url, data)
+  .then(onSucces)
+  .catch(onError)
+  .then(onDone);
+}
