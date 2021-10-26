@@ -7,7 +7,7 @@ import {
 import DelInstrumentDetail from './component/DelInst'
 import PutInstrumentDetail from './component/PutInst'
 import GetInstrumentDetail from './component/GetInst'
-import PostInstrumentDetail from './component/PostInst'
+import PostInst from './component/PostInst'
 import Dashboard from './component/Dashboard'
 
 
@@ -33,7 +33,7 @@ class App extends Component{
                 <GetInstrumentDetail />
             </Route>
             <Route path="/create-instrument">
-              <PostInstrumentDetail />
+              <PostInst />
             </Route>
             <Route path="/">
               <Dashboard />

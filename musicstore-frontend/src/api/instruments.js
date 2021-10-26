@@ -26,8 +26,7 @@ export function delInstrumentDetail(id, onSucces, onError, onDone){
 }
 
 export function postInstrumentDetail(data, onSucces, onError, onDone){
-  let url = INSTRUMENT_RETRIEVE_UPTADE_API
-  axios.post(url, data)
+  axios.post(INSTRUMENT_LIST_CREATE_API, data)
   .then(onSucces)
   .catch(onError)
   .then(onDone);
