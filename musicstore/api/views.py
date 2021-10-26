@@ -46,16 +46,18 @@ def list_create_instruments_endpoint(request):
 
         name = data.get("name")
         price = data.get("price")
+        model = data.get("model")
         brand = data.get("brand")
 
 
-        instrument = Instrument.objects.create(name=name, price=price, brand=brand)
+        instrument = Instrument.objects.create(name=name, price=price, brand=brand, model=model)
 
 
         response = {
             "id": instrument.id,
             "name": instrument.name,
             "price": instrument.price,
+            "model": instrument.model,
             "brand": instrument.brand,
         }
         return JsonResponse(response, status=201)
@@ -81,6 +83,7 @@ def retrieve_update_delete_instrument_endpoint(request,id):
             "id": instrument.id,
             "name": instrument.name,
             "price": instrument.price,
+            "model":instrument.model,
             "brand": instrument.brand,
         }
         return JsonResponse(response, status=200)
@@ -90,11 +93,14 @@ def retrieve_update_delete_instrument_endpoint(request,id):
 
         name = data.get("name")
         price = data.get("price")
+        model = data.get("model")
         brand = data.get("brand")
+
 
         instrument.name = name
         instrument.price = price
         instrument.brand = brand
+        instrument.model = model
         instrument.save()
 
         # "Serialization"
@@ -102,6 +108,7 @@ def retrieve_update_delete_instrument_endpoint(request,id):
             "id": instrument.id,
             "name": instrument.name,
             "price": instrument.price,
+            "model": instrument.model,
             "brand": instrument.brand,
         }
         return JsonResponse(response, status=200)

@@ -1,6 +1,6 @@
 import { React, Component } from "react";
 import { Link } from "react-router-dom";
-import { getInstruments, putInstrumentDetail } from "../api/instruments";
+import { getInstruments, putInstrumentDetail, getInstrumentDetail} from "../api/instruments";
 
 
 
@@ -9,7 +9,7 @@ class UpdatePage extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            id: 1, // When dealing with API updates, you need to have the record ID.
+            id: 7, 
             name: "",
             price: "",
             model: "",
@@ -30,16 +30,18 @@ class UpdatePage extends Component{
         this.setState({
             isLoading: true,
         }, ()=>{
-            getInstruments(this.state.id, this.onGetInstrumentDetailSuccess, this.onGetInstrumentDetailError, this.onGetInstrumentDetailDone);
+            getInstrumentDetail(this.state.id, this.onGetInstrumentDetailSuccess, this.onGetInstrumentDetailError, this.onGetInstrumentDetailDone);
         })
     }
 
     onGetInstrumentDetailSuccess(response) {
+      console.log(response.data)
         this.setState({
             name: response.data["name"],
             price: response.data["price"],
             model: response.data["model"],
             brand: response.data["brand"],
+            isLoading:false,
         });
     }
 
@@ -98,7 +100,7 @@ class UpdatePage extends Component{
         return (
             <>
                 <h1>Update Instrument Record</h1>
-                {isLoading
+                {isLoading === true
                     ? <>
                         <b>Loading ... </b>
                     </>
